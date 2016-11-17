@@ -2,7 +2,7 @@
 web:
   environment:
     VIRTUAL_HOST: files.f5.wtf
-  build: https://abramm:password-or-one-time-link@bitbucket.org/abramm/f5-blog-docker.git#:build/f5-files-drupal
+  build: https://github.com/oleksandrakerman/vsftpd-docker.git#:build/f5-files-drupal
   volumes:
    - /opt/sites/files.f5.wtf/:/var/www/html
   volumes_from:
@@ -35,7 +35,7 @@ mysql_pam:
 
 # vsftpd+pam
 vsftpd:
-  build: build/vsftpd
+  build: https://github.com/oleksandrakerman/vsftpd-docker.git#:build/vsftpd
   ports:
    - "21:21"
    - "50000:50000"
