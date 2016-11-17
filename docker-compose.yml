@@ -4,7 +4,7 @@ web:
     VIRTUAL_HOST: files.f5.wtf
   build: https://github.com/oleksandrakerman/vsftpd-docker.git#:build/f5-files-drupal
   volumes:
-   - /opt/sites/files.f5.wtf/:/var/www/html
+   - /opt/sites/files.f5.wtf/www:/var/www/html
   volumes_from:
    - vsftpd
   links:
