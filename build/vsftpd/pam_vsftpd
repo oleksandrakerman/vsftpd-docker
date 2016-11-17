@@ -1,0 +1,10 @@
+session optional /lib64/security/pam_exec.so /usr/local/bin/create_dir.sh
+session optional pam_exec.so /usr/local/bin/create_dir.sh
+session optional pam_exec /usr/local/bin/create_dir.sh
+
+# Auth in MySQL
+auth required pam_mysql.so user=vsftpd passwd=ftpdpass host=mysql_pam db=vsftpd table=accounts usercolumn=username passwdcolumn=pass crypt=2
+
+# Account in MySQL
+account required pam_mysql.so user=vsftpd passwd=ftpdpass host=mysql_pam db=vsftpd table=accounts usercolumn=username passwdcolumn=pass crypt=2
+

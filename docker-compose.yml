@@ -1,0 +1,46 @@
+# PHP Web Server
+web:
+  build: build/f5-files-drupal
+  ports:
+   - "8001:80"
+  volumes:
+   - /var/www/files.f5wtf:/var/www/html
+  volumes_from:
+   - vsftpd
+  links:
+   - mysql
+   - vsftpd
+   - mysql_pam
+
+# MySQL
+mysql:
+  image: mysql:latest
+  environment:
+    MYSQL_ROOT_PASSWORD: s3cr3t
+    MYSQL_USER: f5_files
+    MYSQL_PASSWORD: f5_files
+    MYSQL_DATABASE: f5_files
+
+# MySQL pam
+mysql_pam:
+  image: mysql:latest
+  environment:
+    MYSQL_ROOT_PASSWORD: s3cr3t
+    MYSQL_USER: vsftpd
+    MYSQL_PASSWORD: ftpdpass
+    MYSQL_DATABASE: vsftpd
+
+# vsftpd+pam
+vsftpd:
+  build: build/vsftpd
+  ports:
+   - "21:21"
+   - "50000:50000"
+   - "50001:50001"
+   - "50002:50002"
+   - "50003:50003"
+   - "50004:50004"
+   - "50005:50005"
+  links:
+   - mysql_pam
+
