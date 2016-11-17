@@ -9,7 +9,6 @@ web:
    - vsftpd
   links:
    - mysql
-   - vsftpd
    - mysql_pam
 
 # MySQL
@@ -20,6 +19,8 @@ mysql:
     MYSQL_USER: f5_files
     MYSQL_PASSWORD: f5_files
     MYSQL_DATABASE: f5_files
+  volumes:
+    - /opt/sites/files.f5.wtf/data/mysql:/var/lib/mysql
 
 # MySQL pam
 mysql_pam:
@@ -30,7 +31,7 @@ mysql_pam:
     MYSQL_PASSWORD: ftpdpass
     MYSQL_DATABASE: vsftpd
   volumes:
-    - /opt/sites/files.f5.wtf/data/mysql:/var/lib/mysql
+    - /opt/sites/files.f5.wtf/data/mysql_pam:/var/lib/mysql
 
 # vsftpd+pam
 vsftpd:
