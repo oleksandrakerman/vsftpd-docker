@@ -1,10 +1,10 @@
 # PHP Web Server
 web:
-  build: build/f5-files-drupal
-  ports:
-   - "8001:80"
+  environment:
+    VIRTUAL_HOST: files.f5.wtf
+  build: https://abramm:password-or-one-time-link@bitbucket.org/abramm/f5-blog-docker.git#:build/f5-files-drupal
   volumes:
-   - /var/www/files.f5wtf:/var/www/html
+   - /opt/sites/files.f5.wtf/:/var/www/html
   volumes_from:
    - vsftpd
   links:
@@ -29,6 +29,8 @@ mysql_pam:
     MYSQL_USER: vsftpd
     MYSQL_PASSWORD: ftpdpass
     MYSQL_DATABASE: vsftpd
+  volumes:
+    - /opt/sites/files.f5.wtf/data/mysql:/var/lib/mysql
 
 # vsftpd+pam
 vsftpd:
