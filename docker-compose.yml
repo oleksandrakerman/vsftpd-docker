@@ -1,6 +1,8 @@
 # PHP Web Server
 web:
   environment:
+    LETSENCRYPT_EMAIL: files.f5.wtf
+    LETSENCRYPT_HOST: files.f5.wtf
     VIRTUAL_HOST: files.f5.wtf
   build: https://github.com/oleksandrakerman/vsftpd-docker.git#:build/f5-files-drupal
   volumes:
